@@ -9,7 +9,10 @@ import './fonts/iconfont.css'
 import axios from 'axios'
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8080/api/private/v1'
-
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = sessionStorage.token
+  return config
+})
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
