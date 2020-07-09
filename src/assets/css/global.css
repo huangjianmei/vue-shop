@@ -6,16 +6,20 @@ body,
   padding: 0;
   min-width: 1366px;
 }
-.el-breadcrumb{
+.el-breadcrumb {
   margin-bottom: 15px;
 }
-.el-card{
-  box-shadow: 0px 1px 1px rgb(0,0,0,0.15);
+.el-card {
+  box-shadow: 0px 1px 1px rgb(0, 0, 0, 0.15);
 }
-.el-table{
+.el-table {
   margin-top: 15px;
   font-size: 12px;
 }
-.el-pagination{
+.el-pagination {
   margin-top: 15px;
+}
+
+.el-cascader-menu {
+  height: 350px;
 }
