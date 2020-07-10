@@ -231,6 +231,17 @@ export default {
     // 删除分类
     async deleteCate(row) {
       console.log(row, '删除分类')
+      const confirmResult = await this.$confirm(
+        '此操作将永久删除该分类, 是否继续?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).catch(err => err)
+      console.log(confirmResult)
+      if (confirmResult !== 'confirm') return this.$message.info('已取消删除')
       const { data: res } = await this.$http.delete(`categories/${row.cat_id}`)
       if (res.meta.status !== 200) {
         return this.$message.error('删除分类失败')
