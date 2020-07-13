@@ -258,9 +258,21 @@ export default {
     },
     // 添加商品
     handleAdd() {
-      this.$refs.addFormRef.validate(async valid => {
+      this.$refs.addFormRef.validate(async (valid, object) => {
         // console.log(object, '====object')
         if (!valid) {
+          const obj = {
+            goods_name: '0',
+            goods_price: '0',
+            goods_number: '0',
+            test_prot1: '1',
+            test_prot2: '2'
+          }
+          for (const i in object) {
+            console.log(i)
+            this.activeIndex = obj[i]
+            this.tabClicked()
+          }
           return this.$message.error('请填写必要的表单项')
         }
         const form = JSON.parse(JSON.stringify(this.addForm))
@@ -288,22 +300,6 @@ export default {
         }
         this.$message.success('添加商品成功')
         this.$router.push('/goods')
-        // if (!valid) {
-        //   for (const i in object) {
-        //     console.log(i, '===i')
-        //     let dom = this.$refs[i]
-        //     console.log(this.$refs[i], '=====1')
-        //     if (Object.prototype.toString.call(dom) !== '[object Object]') {
-        //       dom = dom[0]
-        //       console.log(dom, '==2')
-        //     }
-        //     console.log(dom.$el, '===$el')
-        //     dom.field.scrollIntoView({
-        //       block: 'center',
-        //       behavior: 'smooth'
-        //     })
-        //   }
-        // }
       })
     }
   }
