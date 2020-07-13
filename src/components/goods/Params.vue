@@ -249,7 +249,8 @@ export default {
       }
       console.log(res.data, '==getParamsList')
       res.data.forEach(item => {
-        item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : []
+        item.attr_vals =
+          item.attr_vals.length !== 0 ? item.attr_vals.split(' ') : []
         item.inputVisible = false
         item.inputValue = ''
       })
@@ -365,7 +366,6 @@ export default {
       }
       this.$message.success('删除参数成功')
       this.getParamsList()
-      this.editDialogVisible = false
     },
     // 文本框失去焦点或摁下 Enter 都会触发
     async handleInputConfirm(row) {
