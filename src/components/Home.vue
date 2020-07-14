@@ -9,7 +9,7 @@
         <el-button type="info" @click="logout">退出</el-button>
       </el-header>
       <el-container>
-        <el-aside :width="isCollapse ? '64px':'200px'">
+        <el-aside :width="isCollapse ? '64px' : '200px'">
           <div class="toggle-button" @click="toggleMenu">|||</div>
           <el-menu
             background-color="#333744"
@@ -21,20 +21,24 @@
             router
             :default-active="activePath"
           >
-            <el-submenu :index="'/'+item.path" v-for="item in menuList" :key="item.id">
+            <el-submenu
+              :index="'/' + item.path"
+              v-for="item in menuList"
+              :key="item.id"
+            >
               <template slot="title">
                 <i :class="iconsObj[item.id]"></i>
-                <span>{{item.authName}}</span>
+                <span>{{ item.authName }}</span>
               </template>
               <el-menu-item
-                :index="'/'+subitem.path"
+                :index="'/' + subitem.path"
                 v-for="subitem in item.children"
                 :key="subitem.id"
-                @click="saveActivePath('/'+subitem.path)"
+                @click="saveActivePath('/' + subitem.path)"
               >
                 <template slot="title">
                   <i class="el-icon-menu"></i>
-                  <span>{{subitem.authName}}</span>
+                  <span>{{ subitem.authName }}</span>
                 </template>
               </el-menu-item>
             </el-submenu>

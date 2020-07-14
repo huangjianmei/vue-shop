@@ -11,14 +11,25 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
+
 // 导入字体图标
 import './fonts/iconfont.css'
 import TreeTable from 'vue-table-with-tree-grid'
+
+// 导入进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 import axios from 'axios'
 // 配置请求的根路径
 axios.defaults.baseURL = baseURL
 axios.interceptors.request.use(config => {
+  NProgress.start()
   config.headers.Authorization = sessionStorage.token
+  return config
+})
+axios.interceptors.response.use(config => {
+  NProgress.done()
   return config
 })
 Vue.prototype.$http = axios
